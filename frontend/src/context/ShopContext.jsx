@@ -21,24 +21,6 @@ const ShopContextProvider =(props) =>{
 
     const navigate =useNavigate()
 
-        // If a user exists in localStorage, revalidate / refresh from backend
-        // useEffect(() => {
-        //     if (!user) return;
-        //     const fetchCurrentUser = async () => {
-        //         try {
-        //             const res = await axios.get('http://localhost:5000/api/v1/auth/me', { params: { phone: user.phone } });
-        //             const payload = res.data && (res.data.user || res.data);
-        //             if (payload) {
-        //                 setUser(payload);
-        //                 localStorage.setItem('user', JSON.stringify(payload));
-        //             }
-        //         } catch (err) {
-        //             // ignore if backend is not available
-        //         }
-        //     };
-        //     fetchCurrentUser();
-        // }, []);
-
 
     const addToCart = async (itemId,size) =>{
         let cartData = structuredClone(cartItems);
