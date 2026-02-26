@@ -1,41 +1,122 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { ShopContext } from "../context/ShopContext";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const { setUser } = useContext(ShopContext);
 
-  const [currentState , setcurrentState] = useState('Login')
-  const [Email, setEmail] = useState("");
-  const [password, setpassword] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [otpCode, setOtpCode] = useState("");
+  const [isOtpSent, setIsOtpSent] = useState(false);
+  const [loading, setLoading] = useState(false);
+  // Role will come from backend after OTP verification
 
-  const onSubmitHandler =(e) =>{
+  const handleSendOtp = async (e) => {
     e.preventDefault();
-    // console.log("Email is", { Email });
-    // console.log("password is ", { password });
+    try {
+      setLoading(true);
+       await axios.post(
+        "http://localhost:5000/api/v1/auth/send-otp",
+        { phone: phoneNumber }
+      );
+      
+      setIsOtpSent(true);
+      toast.success("OTP Sent Successfully");
+    } catch (error) {
+      toast.error("Failed to send OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    setEmail('')
-    setpassword('')
-  }
-  return (
-    <form onSubmit={(e)=>onSubmitHandler(e)} className='flex flex-col item-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800'> 
-      <div className='inline-flex items-center gap-2 mb-2 mt-10'> 
-        <p className='font-serif text-3xl '>{currentState}</p>
-        <hr className='border-none h-[1.5px w-8 bg-gray-800]'/>
-      </div>
-      {currentState ==='Login' ? '' : <input className='border border-gray-800 py-2 px-3 w-full' type="number"  placeholder='Name' required/>}
-      <input value={Email} onChange={(e)=>setEmail(e.target.value)} className='border border-gray-800 py-2 px-3 w-full' type="email"  placeholder='Email' required/>
-      <input value={password} onChange={(e)=>setpassword(e.target.value)} className='border border-gray-800 py-2 px-3 w-full' type="password"  placeholder='password' required/>
-
-      <div className="w-full flex justify-between text-sm mt-[-8px]">
-        <p className='cursor-pointer font-semibold'>Forgot your password?</p>
-
+  const handleVerifyOtp = async (e) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await axios.post(
+        "http://localhost:5000/api/v1/auth/verify-otp",
         {
-          currentState==='Login' 
-          ? <p onClick={()=>setcurrentState('Sign Up')} className='cursor-pointer font-semibold'>Create account</p>
-          : <p onClick={()=>setcurrentState('Login')} className='cursor-pointer font-semibold'>Login Here</p>
+          phone: phoneNumber,
+          otp: otpCode,
         }
-      </div>
-      <button className='bg-black text-white font-light px-8 py-2 mt-4'>{currentState === 'Login' ? 'Sign in' : 'Sign Up'}</button>
-      </form>
-  )
-}
+      );
+      // console.log("res-->",res);
 
-export default Login
+      if (res.status === 200) {
+        const payload = res.data && (res.data.user || res.data);
+        console.log("payload check role --->",payload);
+        
+        const role = payload?.data.user.role;
+        console.log("role is --->", role);
+        
+        const userObj = { phone: phoneNumber, role, ...(payload || {}) };
+        setUser(userObj);
+        console.log(">>>>>>>usrobj",userObj);
+        console.log(">>>>>>>usrobj",userObj.data.user);
+        
+        localStorage.setItem('user', JSON.stringify(userObj.data.user));
+        toast.success("Login Successful");
+
+        if (role === 'admin') {
+          navigate('/admin/add-product');
+        } else {
+          navigate('/');
+        }
+      }
+    } catch (error) {
+      toast.error("Invalid OTP");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form
+      onSubmit={isOtpSent ? handleVerifyOtp : handleSendOtp}
+      className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800"
+    >
+      <div className="inline-flex items-center gap-2 mb-2 mt-10">
+        <p className="font-serif text-3xl">Login</p>
+        <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
+      </div>
+
+      <input
+        value={phoneNumber}
+        onChange={(e) => setPhoneNumber(e.target.value)}
+        className="border border-gray-800 py-2 px-3 w-full"
+        type="text"
+        placeholder="Enter Phone Number"
+        required
+        disabled={isOtpSent}
+      />
+
+      {isOtpSent && (
+        <input
+          value={otpCode}
+          onChange={(e) => setOtpCode(e.target.value)}
+          className="border border-gray-800 py-2 px-3 w-full"
+          type="text"
+          placeholder="Enter OTP"
+          required
+        />
+      )}
+
+      <button
+        className="bg-black text-white font-light px-8 py-2 mt-4 w-full"
+        type="submit"
+        disabled={loading}
+      >
+        {loading
+          ? "Processing..."
+          : isOtpSent
+          ? "Verify OTP"
+          : "Send OTP"}
+      </button>
+    </form>
+  );
+};
+
+export default Login;

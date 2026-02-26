@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import axios from 'axios';
 import { products } from "../assets/assets";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
@@ -7,13 +8,36 @@ export const ShopContext = createContext()
 
 const ShopContextProvider =(props) =>{
 
-    const currency = "$";
+    const currency = "INR";
     const delivery_fee = 10;
     const [search, setsearch] = useState("");
     const [showSearch, setshowSearch] = useState(false);
-    const [cartItems , setcartItems] = useState({})
+        const [cartItems , setcartItems] = useState({})
+        const [user, setUser] = useState(() => {
+            const saved = localStorage.getItem('user');
+            return saved ? JSON.parse(saved) : null;
+        });
+        const isAdmin = user?.role === 'admin';
 
     const navigate =useNavigate()
+
+        // If a user exists in localStorage, revalidate / refresh from backend
+        // useEffect(() => {
+        //     if (!user) return;
+        //     const fetchCurrentUser = async () => {
+        //         try {
+        //             const res = await axios.get('http://localhost:5000/api/v1/auth/me', { params: { phone: user.phone } });
+        //             const payload = res.data && (res.data.user || res.data);
+        //             if (payload) {
+        //                 setUser(payload);
+        //                 localStorage.setItem('user', JSON.stringify(payload));
+        //             }
+        //         } catch (err) {
+        //             // ignore if backend is not available
+        //         }
+        //     };
+        //     fetchCurrentUser();
+        // }, []);
 
 
     const addToCart = async (itemId,size) =>{
@@ -27,14 +51,18 @@ const ShopContextProvider =(props) =>{
             if (cartData[itemId][size]) {
                 cartData[itemId][size] +=1;
                 // console.log(cartData);
+                toast.success('Item added to cart')
                 
             }
             else{
                 cartData[itemId][size] = 1;
+                toast.success('Item added to cart')
             }
         }else{
             cartData[itemId] ={}
             cartData[itemId][size] = 1
+            toast.success('Item added to cart')
+
         }
         setcartItems(cartData)
     }
@@ -95,7 +123,10 @@ const ShopContextProvider =(props) =>{
         getCartCount,
         updateQuantity,
         getCartAmount,
-        navigate
+        navigate,
+        user,
+        setUser,
+        isAdmin
     }
     return(
     <ShopContext.Provider value={value}>

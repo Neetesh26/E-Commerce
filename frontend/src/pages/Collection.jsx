@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import { ShopContext } from "../context/ShopContext";
 import { assets } from "../assets/assets";
 import Title from '../components/Title'
@@ -6,6 +7,8 @@ import ProductItem from "../components/ProductItem";
 
 const Collection = () => {
   const { products , search , showSearch} = useContext(ShopContext);
+  const location = useLocation();
+
   const [showFilter,setshowFilter] = useState( false)
   const [filterProduct,setfilterProduct] = useState([])
   const [category,setcategory] = useState([])
@@ -29,6 +32,17 @@ const Collection = () => {
     }
   }
 
+
+  // read query params on mount and whenever search string changes
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const cat = params.get('category');
+    if (cat) {
+      setcategory([cat]);
+      // ensure filter panel is open on mobile so user sees the filter
+      setshowFilter(true);
+    }
+  }, [location.search]);
 
   // useEffect(()=>{
   //   setfilterProduct(products)
@@ -101,13 +115,31 @@ const sortProduct = () =>{
           <div className='flex flex-col gap-2 text-sm  font-light text-gray-700'>
 
               <p className='flex gap-2'>
-                <input className="w-3" type="checkbox" value={'Men'} onChange={toggleCategory}/>Men
+                <input
+                  className="w-3"
+                  type="checkbox"
+                  value={'Men'}
+                  checked={category.includes('Men')}
+                  onChange={toggleCategory}
+                />Men
               </p>
               <p className='flex gap-2'>
-                <input className="w-3" type="checkbox" value={'Women'} onChange={toggleCategory}/>Women
+                <input
+                  className="w-3"
+                  type="checkbox"
+                  value={'Women'}
+                  checked={category.includes('Women')}
+                  onChange={toggleCategory}
+                />Women
               </p>
               <p className='flex gap-2'>
-                <input className="w-3" type="checkbox" value={'Kids'} onChange={toggleCategory}/>Kids
+                <input
+                  className="w-3"
+                  type="checkbox"
+                  value={'Kids'}
+                  checked={category.includes('Kids')}
+                  onChange={toggleCategory}
+                />Kids
               </p>
           </div>
         </div>

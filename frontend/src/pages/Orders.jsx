@@ -4,7 +4,7 @@ import Title from '../components/Title'
 
 const Orders = () => {
 
-  const { products , currency} =useContext(ShopContext)
+  const { products , currency} = useContext(ShopContext)
 
   return (
     <div className='border-t pt-16'>

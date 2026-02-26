@@ -8,11 +8,11 @@ const { search ,setsearch, showSearch, setshowSearch} = useContext(ShopContext)
 
 const location = useLocation();
 
-    useEffect(()=>{
-    // console.log(location.pathname);
-    setshowSearch(false)
-    setsearch('')
-    },[location])
+  useEffect(()=>{
+  // console.log(location.pathname);
+  setshowSearch(false)
+  setsearch('')
+  },[location])
 
     
   return showSearch ? (

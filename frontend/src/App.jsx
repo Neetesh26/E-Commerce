@@ -10,9 +10,13 @@ import Cart from '../src/pages/Cart';
 import Login from '../src/pages/Login';
 import PlaceOrder from '../src/pages/PlaceOrder';
 import Orders from '../src/pages/Orders';
+import AdminAddProduct from '../src/pages/AdminAddProduct';
 import Footer from './components/Footer';
 import SearchBar from './components/SearchBar';
+import PrivateRoute from './components/PrivateRoute';
 import { ToastContainer, toast } from 'react-toastify';
+import PaymentSuccess from './components/PaymentSuccess';
+import CancelOrder from './components/CancelOrder';
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -28,8 +32,46 @@ const App = () => {
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/login' element={<Login />} />
-          <Route path='/place-order' element={<PlaceOrder />} />
-          <Route path='/orders' element={<Orders />} />
+          <Route
+            path='/place-order'
+            element={
+              <PrivateRoute>
+                <PlaceOrder />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/orders'
+            element={
+              <PrivateRoute>
+                <Orders />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/orders/success'
+            element={
+              <PrivateRoute>
+                <PaymentSuccess />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/orders/cancel'
+            element={
+              <PrivateRoute>
+                <CancelOrder />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path='/admin/add-product'
+            element={
+              <PrivateRoute adminOnly>
+                <AdminAddProduct />
+              </PrivateRoute>
+            }
+          />
       </Routes>
       <Footer/>
     </div>
