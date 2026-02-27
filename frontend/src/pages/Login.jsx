@@ -54,8 +54,8 @@ const Login = () => {
         
         const userObj = { phone: phoneNumber, role, ...(payload || {}) };
         setUser(userObj);
-        console.log(">>>>>>>usrobj",userObj);
-        console.log(">>>>>>>usrobj",userObj.data.user);
+        // console.log(">>>>>>>usrobj",userObj);
+        // console.log(">>>>>>>usrobj",userObj.data.user);
         
         localStorage.setItem('user', JSON.stringify(userObj.data.user));
         toast.success("Login Successful");

@@ -37,7 +37,7 @@ const PlaceOrder = () => {
         }
       }
     }
-
+    
     return items;
   };
 
