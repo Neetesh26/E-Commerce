@@ -17,6 +17,7 @@ import PrivateRoute from './components/PrivateRoute';
 import { ToastContainer, toast } from 'react-toastify';
 import PaymentSuccess from './components/PaymentSuccess';
 import CancelOrder from './components/CancelOrder';
+import StripeWindow from './components/StripeWindow';
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -26,6 +27,7 @@ const App = () => {
       <SearchBar />
       <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/stripe' element={<StripeWindow />} />
           <Route path='/collection' element={<Collection />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={< Contact/>} />
