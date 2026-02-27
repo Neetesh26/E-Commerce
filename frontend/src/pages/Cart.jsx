@@ -22,7 +22,7 @@ const Card = () => {
         }
       }
     }
-    // console.log(tempData);
+    console.log(tempData);
     
     setcartData(tempData)
   },[cartItems]);
