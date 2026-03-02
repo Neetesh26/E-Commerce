@@ -47,10 +47,10 @@ const Login = () => {
 
       if (res.status === 200) {
         const payload = res.data && (res.data.user || res.data);
-        console.log("payload check role --->",payload);
+        // console.log("payload check role --->",payload);
         
         const role = payload?.data.user.role;
-        console.log("role is --->", role);
+        // console.log("role is --->", role);
         
         const userObj = { phone: phoneNumber, role, ...(payload || {}) };
         setUser(userObj);

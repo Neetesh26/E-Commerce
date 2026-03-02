@@ -39,12 +39,12 @@ const ShopContextProvider = ({ children }) => {
           
         }
       } catch (error) {
-        console.log("DB fetch failed, using local products");
+        // console.log("DB fetch failed, using local products");
       }
     };
 
     fetchProducts();
-  }, []);
+  }, [ setDbProducts,]);
 
   useEffect(() => {
     const merged = [...dbProducts, ...productsData];
@@ -52,7 +52,7 @@ const ShopContextProvider = ({ children }) => {
 
     console.log("merge productss>>>>",merged);
     
-  }, [dbProducts]);
+  }, [dbProducts, productsData]);
 
 
   const addToCart = (itemId, size) => {
@@ -114,6 +114,7 @@ const ShopContextProvider = ({ children }) => {
   };
 
   const value = {
+  
     products: allProducts, 
     currency,
     delivery_fee,
@@ -131,6 +132,8 @@ const ShopContextProvider = ({ children }) => {
     setUser,
     isAdmin,
   };
+  console.log("value.products>>>",value.products);
+  
 
   return (
     <ShopContext.Provider value={value}>
