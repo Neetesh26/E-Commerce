@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import logo from "../assets/logo.png";
 import { ShopContext } from "../context/ShopContext";
+import { axiosInstance } from "../config/axiosInstance";
 
 const AdminAddProduct = () => {
   const navigate = useNavigate();
@@ -51,8 +51,8 @@ const AdminAddProduct = () => {
         });
       }
 
-      await axios.post(
-        "http://localhost:5000/api/v1/admin/create-product",
+      await axiosInstance.post(
+        "/v1/admin/create-product",
         formData,
       );
 

@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import axios from "axios";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../config/axiosInstance";
 
 const CardInputForm = ({
   cartItemsToProcess,
@@ -49,8 +49,8 @@ const CardInputForm = ({
       // console.log("payload.product",payload.product);
       
 
-      const resp = await axios.post(
-        "http://localhost:5000/api/payment/create-payment-intent",
+      const resp = await axiosInstance.post(
+        "/payment/create-payment-intent",
         payload
       );
       // console.log("resp.data",resp.data);

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { ShopContext } from "../context/ShopContext";
+import { axiosInstance } from "../config/axiosInstance";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-       await axios.post(
-        "http://localhost:5000/api/v1/auth/send-otp",
+       await axiosInstance.post(
+        "/v1/auth/send-otp",
         { phone: phoneNumber }
       );
       
@@ -36,8 +36,8 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await axios.post(
-        "http://localhost:5000/api/v1/auth/verify-otp",
+      const res = await axiosInstance.post(
+        "/v1/auth/verify-otp",
         {
           phone: phoneNumber,
           otp: otpCode,

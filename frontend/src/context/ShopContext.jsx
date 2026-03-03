@@ -1,8 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
 import { productsData } from "../assets/assets";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { axiosInstance } from "../config/axiosInstance";
 
 export const ShopContext = createContext();
 
@@ -28,8 +28,8 @@ const ShopContextProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/v1/products/getAllproducts"
+        const res = await axiosInstance.get(
+          "/v1/products/getAllproducts"
         );
 
         // console.log("rews only>>>>>>",res);
