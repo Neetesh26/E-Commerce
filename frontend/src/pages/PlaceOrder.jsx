@@ -28,10 +28,13 @@ const PlaceOrder = () => {
         if (cartItems[itemId][size] > 0) {
           const product = products.find((p) => p._id === itemId);
           if (product) {
+            // console.log(">>>>",product);
+            
             items.push({
               id: product._id,
               name: product.name,
               price: product.price,
+              images : product.image,
             });
           }
         }

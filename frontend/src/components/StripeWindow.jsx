@@ -46,12 +46,15 @@ const CardInputForm = ({
         userData: user,
         paymentMethodId,
       };
+      // console.log("payload.product",payload.product);
+      
 
       const resp = await axios.post(
         "http://localhost:5000/api/payment/create-payment-intent",
         payload
       );
-
+      // console.log("resp.data",resp.data);
+      // console.log("resp",resp);
       const { clientSecret } = resp.data;
 
       const confirm = await stripe.confirmCardPayment(clientSecret);
@@ -59,7 +62,7 @@ const CardInputForm = ({
       if (confirm.error) {
         setError(confirm.error.message);
       } else if (confirm.paymentIntent.status === "succeeded") {
-        navigate("/orders?success=true");
+        navigate("/orders?success=true", { state: { products: payload.product } });
       }
     } catch (err) {
       setError("Payment failed");

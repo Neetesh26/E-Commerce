@@ -8,7 +8,6 @@ import ProductItem from "../components/ProductItem";
 const Collection = () => {
   const { products, search, showSearch } = useContext(ShopContext);
   const location = useLocation();
-  console.log(">>>>>>inside collecxtio", products);
 
   const [showFilter, setshowFilter] = useState(false);
   const [filterProduct, setfilterProduct] = useState([]);

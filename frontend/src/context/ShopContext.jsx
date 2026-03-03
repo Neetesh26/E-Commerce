@@ -32,8 +32,8 @@ const ShopContextProvider = ({ children }) => {
           "http://localhost:5000/api/v1/products/getAllproducts"
         );
 
-        console.log("rews only>>>>>>",res);
-        console.log("api calling data>>>>>>",res.data.products);
+        // console.log("rews only>>>>>>",res);
+        // console.log("api calling data>>>>>>",res.data.products);
         if (res.data) {
           setDbProducts(res.data.products);
           
@@ -50,7 +50,7 @@ const ShopContextProvider = ({ children }) => {
     const merged = [...dbProducts, ...productsData];
     setAllProducts(merged);
 
-    console.log("merge productss>>>>",merged);
+    // console.log("merge productss>>>>",merged);
     
   }, [dbProducts, productsData]);
 
@@ -132,7 +132,7 @@ const ShopContextProvider = ({ children }) => {
     setUser,
     isAdmin,
   };
-  console.log("value.products>>>",value.products);
+  // console.log("value.products>>>",value.products);
   
 
   return (
