@@ -5,13 +5,9 @@ import Title from "../components/Title";
 import CartTotal from "../components/CartTotal";
 import { assets } from "../assets/assets";
 import { ShopContext } from "../context/ShopContext";
-import axios from "axios";
 import CardInputForm from "../components/StripeWindow";
-// import CardInputForm from "./CardInputForm";
 
-const stripePromise = loadStripe(
-  "pk_test_51T4KDe1OJnHAVnv6Xi6jIqG1HcK3WGp6WPfUNm9Z5Qm8a4t9E5snuOLLQpCZhmg2SFOPiFncSQx1XqnRIQPHw54r008iXQVwCa"
-);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLISHABLE_KEY);
 
 const PlaceOrder = () => {
   const [method, setMethod] = useState("cod");
@@ -28,16 +24,19 @@ const PlaceOrder = () => {
         if (cartItems[itemId][size] > 0) {
           const product = products.find((p) => p._id === itemId);
           if (product) {
+            // console.log(">>>>",product);
+            
             items.push({
               id: product._id,
               name: product.name,
               price: product.price,
+              images : product.image,
             });
           }
         }
       }
     }
-
+    
     return items;
   };
 
