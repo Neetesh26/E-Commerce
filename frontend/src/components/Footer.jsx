@@ -8,7 +8,7 @@ const Footer = () => {
 
         <div className=''>
             <img className='mb-5 w-32' src={assets.logo} alt="" />
-            <p className='w-full md:w-2/3 text-gray-600'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Velit animi explicabo optio sequi ipsum molestiae dolor obcaecati. Cupiditate provident, necessitatibus laudantium obcaecati laboriosam atque numquam quos placeat. Eos, deleniti atque.</p>
+            <p className='w-full md:w-2/3 text-gray-600'>We are committed to delivering quality products and exceptional service. Our goal is to make every customer experience seamless, reliable, and enjoyable.</p>
         </div>
 
         <div className=''>
@@ -24,8 +24,8 @@ const Footer = () => {
         <div>
         <p className='text-xl font-medium mb-5'> GET IN TOUCH</p>
         <ul className='flex flex-col gap-1 text-gray-600'>
-                <li>+91-5645-5648-12</li>
-                <li>contact@gmail.com</li>
+                <li>📞 +91-5645-5648-12</li>
+                <li>✉️ ForeverIND@gmail.com</li>
                 
             </ul>
         </div>
@@ -34,7 +34,8 @@ const Footer = () => {
 
       <div>
         <hr />
-        <p className='py-5 text-sm text-center'> Copyright 2025 forever.com All Right Reserved.</p>
+        <p className='py-3 text-sm text-center'> Copyright 2026 forever.com All Right Reserved.</p>
+<p className='text-sm text-center text-gray-600 font-semibold'>Love with Neetesh❤️</p>        
       </div>
     </div>
   )
