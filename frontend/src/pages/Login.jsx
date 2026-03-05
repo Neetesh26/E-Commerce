@@ -17,62 +17,46 @@ const Login = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await axiosInstance.post("/v1/auth/send-otp", {
-        email: email,
-      });
-
+      await axiosInstance.post("/v1/auth/send-otp", { email });
       setIsOtpSent(true);
       toast.success("OTP Sent Successfully");
     } catch (error) {
       toast.error("Failed to send OTP");
+      // console.log(error);
     } finally {
       setLoading(false);
     }
   };
 
   const handleVerifyOtp = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    try {
+      setLoading(true);
+      const res = await axiosInstance.post("/v1/auth/verify-otp", {
+        email,
+        otp: otpCode,
+      });
 
-  try {
-    setLoading(true);
+      if (res.status === 200) {
+        const payload = res.data.data;
+        const role = payload.user.role;
 
-    const res = await axiosInstance.post("/v1/auth/verify-otp", {
-      email: email,
-      otp: otpCode,
-    });
+        const userObj = { email, role, ...payload };
+        setUser(userObj);
+        localStorage.setItem("user", JSON.stringify(payload.user));
 
-    if (res.status === 200) {
+        toast.success("Login Successful");
 
-      const payload = res.data.data;
-
-      const role = payload.user.role;
-
-      const userObj = {
-        email: email,
-        role,
-        ...payload,
-      };
-
-      setUser(userObj);
-
-      localStorage.setItem("user", JSON.stringify(payload.user));
-
-      toast.success("Login Successful");
-
-      if (role === "admin") {
-        navigate("/admin/add-product");
-      } else {
-        navigate("/");
+        if (role === "admin") navigate("/admin/add-product");
+        else navigate("/");
       }
+    } catch (error) {
+      // console.log(error);
+      toast.error("Invalid OTP");
+    } finally {
+      setLoading(false);
     }
-
-  } catch (error) {
-    console.log(">>>>>>", error);
-    toast.error("Invalid OTP");
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   return (
     <form
@@ -127,6 +111,9 @@ const Login = () => {
       {/* Google Button */}
       <button
         type="button"
+        onClick={() => {
+          window.location.href = "http://localhost:5000/api/v1/auth/google";
+        }}
         className="flex items-center justify-center gap-3 border border-gray-300 py-2 px-4 w-full hover:bg-gray-100 transition"
       >
         <img

@@ -3,11 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { axiosInstance } from "../config/axiosInstance";
 
-const CardInputForm = ({
-  cartItemsToProcess,
-  setCartItemsToProcess,
-  setRequiresCard,
-}) => {
+const CardInputForm = ({ cartItemsToProcess, setCartItemsToProcess }) => {
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
@@ -46,15 +42,14 @@ const CardInputForm = ({
         userData: user,
         paymentMethodId,
       };
-      // console.log("payload.product",payload.product);
+      // console.log(">>>>payload",payload);
       
-
       const resp = await axiosInstance.post(
         "/payment/create-payment-intent",
         payload
       );
-      // console.log("resp.data",resp.data);
-      // console.log("resp",resp);
+      // console.log(">>>>payload",resp);
+
       const { clientSecret } = resp.data;
 
       const confirm = await stripe.confirmCardPayment(clientSecret);
@@ -62,9 +57,12 @@ const CardInputForm = ({
       if (confirm.error) {
         setError(confirm.error.message);
       } else if (confirm.paymentIntent.status === "succeeded") {
-        navigate("/orders?success=true", { state: { products: payload.product } });
+        navigate("/orders?success=true", {
+          state: { products: payload.product },
+        });
       }
     } catch (err) {
+      console.log("Payment error:", err);
       setError("Payment failed");
     }
 
@@ -74,9 +72,7 @@ const CardInputForm = ({
   return (
     <form onSubmit={handleCardSubmit} className="max-w-md mx-auto">
       {error && (
-        <div className="text-red-500 mb-4 p-3 bg-red-100 rounded">
-          {error}
-        </div>
+        <div className="text-red-500 mb-4 p-3 bg-red-100 rounded">{error}</div>
       )}
 
       <CardElement className="p-4 border rounded" />
@@ -92,4 +88,4 @@ const CardInputForm = ({
   );
 };
 
-export default CardInputForm;   
+export default CardInputForm;

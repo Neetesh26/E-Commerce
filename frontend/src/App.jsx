@@ -18,6 +18,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import PaymentSuccess from './components/PaymentSuccess';
 import CancelOrder from './components/CancelOrder';
 import StripeWindow from './components/StripeWindow';
+import OAuthSuccess from './pages/OAuthSuccess';
 const App = () => {
   return (
     <div className='px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]'>
@@ -34,6 +35,7 @@ const App = () => {
           <Route path='/product/:productId' element={<Product />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='/login' element={<Login />} />
+          <Route path="/oAuth-success" element={<OAuthSuccess />} />
           <Route
             path='/place-order'
             element={

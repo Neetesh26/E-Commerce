@@ -17,9 +17,14 @@ const ShopContextProvider = ({ children }) => {
   const [allProducts, setAllProducts] = useState([]);
 
   const [user, setUser] = useState(() => {
+  try {
     const saved = localStorage.getItem("user");
-    return saved ? JSON.parse(saved) : null;
-  });
+    return saved && saved !== "undefined" ? JSON.parse(saved) : null;
+  } catch (err) {
+    console.warn("Failed to parse user from localStorage:", err);
+    return null;
+  }
+});
 
   const isAdmin = user?.role === "admin";
   const navigate = useNavigate();
