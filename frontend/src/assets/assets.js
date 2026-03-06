@@ -1154,163 +1154,20 @@ export const assets = {
         date: 1716680000008,
         bestseller: true
     },
-    {
-    _id: "toy1",
-    name: "Remote Control Car",
-    description: "High speed remote control racing car with rechargeable battery.",
-    price: 1499,
-    image: ["https://ik.imagekit.io/opfimij6p/BI/Traxxas%20TRX4-m%20in%20the%20snow!.jpg"],
-    category: "Toys",
-    subCategory: "Vehicles",
-    sizes: ["Standard"],
-    date: 1716680000010,
-    bestseller: true
-},{
-    _id: "toy2",
-    name: "Teddy Bear Soft Toy",
-    description: "Cute and soft teddy bear perfect for kids and gifts.",
-    price: 799,
-    image: ["https://ik.imagekit.io/opfimij6p/BI/Coffee%20Shop%20Christmas.jpg"],
-    category: "Toys",
-    subCategory: "Soft Toys",
-    sizes: ["Standard"],
-    date: 1716680000011,
-    bestseller: true
-},
-{
-    _id: "toy3",
-    name: "Building Blocks Set",
-    description: "Creative building blocks toy set that improves kids imagination.",
-    price: 999,
-    image: ["https://ik.imagekit.io/opfimij6p/BI/Building%20Blocks.jpg"],
-    category: "Toys",
-    subCategory: "Educational",
-    sizes: ["Standard"],
-    date: 1716680000012,
-    bestseller: false
-},
-{
-    _id: "toy4",
-    name: "Kids Puzzle Game",
-    description: "Colorful puzzle game designed to improve problem solving skills.",
-    price: 499,
-    image: ["https://ik.imagekit.io/opfimij6p/BI/Child%20kid%20boy%20make%20an%20agric....jpg"],
-    category: "Toys",
-    subCategory: "Puzzle",
-    sizes: ["Standard"],
-    date: 1716680000013,
-    bestseller: false
-},
 
-{
-    _id: "mobile1",
-    name: "iPhone 14 Pro",
-    description: "Apple iPhone 14 Pro with A16 Bionic chip, advanced camera system, and Super Retina display.",
-    price: 119999,
-    image: ["https://images.unsplash.com/photo-1678652197831-2d180705cd2c?w=600&h=600&fit=crop"],
-    category: "Mobiles",
-    subCategory: "Smartphones",
-    sizes: ["128GB", "256GB", "512GB"],
-    date: 1716680000020,
-    bestseller: true
-},
-{
-    _id: "mobile2",
-    name: "Samsung Galaxy S23",
-    description: "Premium Samsung smartphone with powerful Snapdragon processor and AMOLED display.",
-    price: 89999,
-    image: ["https://images.unsplash.com/photo-1610945265064-0e34e5519bbf?w=600&h=600&fit=crop"],
-    category: "Mobiles",
-    subCategory: "Smartphones",
-    sizes: ["128GB", "256GB"],
-    date: 1716680000021,
-    bestseller: true
-},
-{
-    _id: "mobile3",
-    name: "OnePlus 11 5G",
-    description: "Fast and smooth OnePlus smartphone with Snapdragon processor and 120Hz display.",
-    price: 56999,
-    image: ["https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=600&h=600&fit=crop"],
-    category: "Mobiles",
-    subCategory: "Smartphones",
-    sizes: ["128GB", "256GB"],
-    date: 1716680000022,
-    bestseller: false
-},
-{
-    _id: "mobile4",
-    name: "Xiaomi Redmi Note 12",
-    description: "Affordable smartphone with powerful battery and high refresh rate display.",
-    price: 17999,
-    image: ["https://images.unsplash.com/photo-1580910051074-3eb694886505?w=600&h=600&fit=crop"],
-    category: "Mobiles",
-    subCategory: "Smartphones",
-    sizes: ["64GB", "128GB"],
-    date: 1716680000023,
-    bestseller: true
-},
-{
-    _id: "mobile5",
-    name: "Google Pixel 8",
-    description: "Google Pixel phone with advanced AI camera and pure Android experience.",
-    price: 75999,
-    image: ["https://images.unsplash.com/photo-1695048133142-1a20484d2569?w=600&h=600&fit=crop"],
-    category: "Mobiles",
-    subCategory: "Smartphones",
-    sizes: ["128GB", "256GB"],
-    date: 1716680000024,
-    bestseller: false
-},
-{
-    _id: "car1",
-    name: "Tesla Model 3",
-    description: "Electric sedan with advanced autopilot features and long range battery.",
-    price: 4500000,
-    image: ["https://images.unsplash.com/photo-1617788138017-80ad40651399?w=600&h=600&fit=crop"],
-    category: "Cars",
-    subCategory: "Electric",
-    sizes: ["Standard"],
-    date: 1716680000030,
-    bestseller: true
-},
-{
-    _id: "car2",
-    name: "BMW M4 Sports Coupe",
-    description: "High performance luxury coupe with powerful turbocharged engine.",
-    price: 7200000,
-    image: ["https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&h=600&fit=crop"],
-    category: "Cars",
-    subCategory: "Sports",
-    sizes: ["Standard"],
-    date: 1716680000031,
-    bestseller: true
-},
-{
-    _id: "car3",
-    name: "Mercedes Benz G-Class",
-    description: "Luxury SUV with iconic design and powerful off-road capability.",
-    price: 15000000,
-    image: ["https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=600&h=600&fit=crop"],
-    category: "Cars",
-    subCategory: "SUV",
-    sizes: ["Standard"],
-    date: 1716680000032,
-    bestseller: false
-},
 
-{
-    _id: "car5",
-    name: "Ford Mustang GT",
-    description: "Legendary American muscle car with V8 engine and aggressive design.",
-    price: 7500000,
-    image: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=600&h=600&fit=crop"],
-    category: "Cars",
-    subCategory: "Sports",
-    sizes: ["Standard"],
-    date: 1716680000034,
-    bestseller: true
-}
+// {
+//     _id: "car5",
+//     name: "Ford Mustang GT",
+//     description: "Legendary American muscle car with V8 engine and aggressive design.",
+//     price: 7500000,
+//     image: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=600&h=600&fit=crop"],
+//     category: "Cars",
+//     subCategory: "Sports",
+//     sizes: ["Standard"],
+//     date: 1716680000034,
+//     bestseller: true
+// }
   
 
 

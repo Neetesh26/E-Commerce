@@ -57,9 +57,17 @@ const CardInputForm = ({ cartItemsToProcess, setCartItemsToProcess }) => {
       if (confirm.error) {
         setError(confirm.error.message);
       } else if (confirm.paymentIntent.status === "succeeded") {
-        navigate("/orders?success=true", {
-          state: { products: payload.product },
+        
+        // SAVE ORDER IN DATABASE
+       const res = await axiosInstance.post("/orders/create", {
+          userId: user._id,
+          products: cartItemsToProcess,
+          paymentId: confirm.paymentIntent.id,
+          status: "paid",
         });
+        console.log(">>>>>>>>resprod",res);
+        
+        navigate("/orders");
       }
     } catch (err) {
       console.log("Payment error:", err);
