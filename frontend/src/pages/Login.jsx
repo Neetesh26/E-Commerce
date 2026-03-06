@@ -63,6 +63,18 @@ const Login = () => {
       onSubmit={isOtpSent ? handleVerifyOtp : handleSendOtp}
       className="flex flex-col items-center w-[90%] sm:max-w-96 m-auto mt-14 gap-4 text-gray-800"
     >
+      {/* Notice */}
+<div className="w-full bg-yellow-50 border border-yellow-300 text-yellow-800 text-sm p-3 rounded">
+  <p>
+    <strong>Note:</strong> Email OTP authentication may not work in the demo
+    environment because the email service requires a verified domain on the
+    production server.  
+  </p>
+  <p className="mt-1">
+    For quick access, please use <strong>Google Authentication</strong> below to
+    continue.
+  </p>
+</div>
       {/* Title */}
       <div className="inline-flex items-center gap-2 mb-2 mt-10">
         <p className="font-serif text-3xl">Login</p>
