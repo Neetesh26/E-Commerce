@@ -65,7 +65,7 @@ const CardInputForm = ({ cartItemsToProcess, setCartItemsToProcess }) => {
           paymentId: confirm.paymentIntent.id,
           status: "paid",
         });
-        console.log(">>>>>>>>resprod",res);
+        // console.log(">>>>>>>>resprod",res);
         
         navigate("/orders");
       }
