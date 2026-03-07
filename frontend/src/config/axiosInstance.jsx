@@ -6,20 +6,20 @@ export const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.response.use(
-  (response)=>{
+  (response) => {
     return response;
-  }
-  ,(error)=>{
-    const msg =error.status
-    if(msg === 404){
-    // navigate("/404")
+  },
+  (error) => {
 
-    }else{
-     
-        // navigate("/500")
-     
+    const status = error.response?.status;
+
+    if (status === 404) {
+      console.log("API Not Found");
+    } 
+    else if (status === 500) {
+      console.log("Server Error");
     }
+
     return Promise.reject(error);
   }
-
-)
+);

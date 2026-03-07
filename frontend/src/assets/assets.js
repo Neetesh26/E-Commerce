@@ -1154,21 +1154,4 @@ export const assets = {
         date: 1716680000008,
         bestseller: true
     },
-
-
-// {
-//     _id: "car5",
-//     name: "Ford Mustang GT",
-//     description: "Legendary American muscle car with V8 engine and aggressive design.",
-//     price: 7500000,
-//     image: ["https://images.unsplash.com/photo-1584345604476-8ec5e12e42dd?w=600&h=600&fit=crop"],
-//     category: "Cars",
-//     subCategory: "Sports",
-//     sizes: ["Standard"],
-//     date: 1716680000034,
-//     bestseller: true
-// }
-  
-
-
     ]
