@@ -50,7 +50,7 @@ const OAuthSuccess = () => {
 
         // 🔹 role based redirect
         if (dbUser.role === "admin") {
-          navigate("/admin");
+          navigate("/admin/add-product");
         } else {
           navigate("/");
         }
