@@ -22,7 +22,7 @@ import OAuthSuccess from "./pages/OAuthSuccess";
 import AdminDashboard from "./Admin/AdminDashboard";
 import AdminProducts from "./Admin/AdminProducts";
 import AdminOrders from "./Admin/AdminOrders";
-import Profile from "./pages/profile";
+import Profile from "./pages/Profile"
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
