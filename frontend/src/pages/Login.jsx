@@ -40,6 +40,7 @@ const Login = () => {
       if (res.status === 200) {
         const payload = res.data.data;
         const role = payload.user.role;
+        localStorage.setItem("token", payload.token);
 
         const userObj = { email, role, ...payload };
         setUser(userObj);
@@ -58,6 +59,8 @@ const Login = () => {
     }
   };
 
+
+  
   return (
     <form
       onSubmit={isOtpSent ? handleVerifyOtp : handleSendOtp}
