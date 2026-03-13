@@ -26,9 +26,11 @@ const OAuthSuccess = () => {
 
       try {
 
+        // ✅ store token for interceptor
+        localStorage.setItem("token", token);
+
         const decoded = jwtDecode(token);
 
-        // 🔹 check user in database
         const res = await axiosInstance.get(`v1/auth/find-user?email=${decoded.email}`);
         console.log("res>>>",res);
         
@@ -41,14 +43,12 @@ const OAuthSuccess = () => {
           token
         };
 
-        console.log(">>>>>>>", userObj);
-
         setUser(userObj);
+
         localStorage.setItem("user", JSON.stringify(userObj));
 
         toast.success("Login Successful via Google");
 
-        // 🔹 role based redirect
         if (dbUser.role === "admin") {
           navigate("/admin/add-product");
         } else {
