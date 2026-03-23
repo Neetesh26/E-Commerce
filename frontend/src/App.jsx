@@ -23,6 +23,8 @@ import AdminDashboard from "./Admin/AdminDashboard";
 import AdminProducts from "./Admin/AdminProducts";
 import AdminOrders from "./Admin/AdminOrders";
 import Profile from "./pages/Profile"
+import NotFound from "./pages/NotFound";
+import Working from "./pages/Working";
 const App = () => {
   return (
     <div className="px-4 sm:px-[5vw] md:px-[7vw] lg:px-[9vw]">
@@ -72,6 +74,9 @@ const App = () => {
             </PrivateRoute>
           }
         />
+
+        {/* ✅ Working Page */}
+  <Route path="/working" element={<Working />} />
         <Route
           path="/admin"
           element={
@@ -87,6 +92,8 @@ const App = () => {
 
           <Route path="orders" element={<AdminOrders />} />
         </Route>
+         {/* ✅ 404 Page (ALWAYS LAST) */}
+  <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </div>
