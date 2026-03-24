@@ -5,6 +5,7 @@ import LatestCollection from '../components/LatestCollection';
 import BestSeller from '../components/BestSeller';
 import OurPolicy from '../components/OurPolicy';
 import NewsLetterBox from '../components/NewsLetterBox';
+import AiChatbot from '../components/ai/AiChatbot'; 
 
 const Home = () => {
   return (
@@ -18,6 +19,8 @@ const Home = () => {
         <BestSeller />
         <OurPolicy />
         <NewsLetterBox/>
+
+        <AiChatbot />
     </div>
   )
 }
