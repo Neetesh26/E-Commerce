@@ -75,7 +75,6 @@ const App = () => {
           }
         />
 
-        {/* ✅ Working Page */}
   <Route path="/working" element={<Working />} />
         <Route
           path="/admin"
@@ -92,7 +91,6 @@ const App = () => {
 
           <Route path="orders" element={<AdminOrders />} />
         </Route>
-         {/* ✅ 404 Page (ALWAYS LAST) */}
   <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

@@ -18,10 +18,9 @@ const AiChatbot = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  // ✅ Build history array from messages for backend
   const buildHistory = (msgs) => {
     return msgs
-      .filter((m) => m.type === "text") // only text messages
+      .filter((m) => m.type === "text")
       .map((m) => ({
         role: m.role === "user" ? "user" : "assistant",
         content: m.text,
@@ -44,7 +43,7 @@ const AiChatbot = () => {
     try {
       const res = await axiosInstance.post("/chat", {
         message: userMessage,
-        history: buildHistory(updatedMessages), // ✅ send history
+        history: buildHistory(updatedMessages), 
       });
 
       setMessages((prev) => [
@@ -96,7 +95,7 @@ const AiChatbot = () => {
             <span className="text-xl">🤖</span>
             <div>
               <p className="font-semibold text-sm">AI Shopping Assistant</p>
-              <p className="text-xs text-indigo-200">Powered by Groq</p>
+              {/* <p className="text-xs text-indigo-200">Powered by Groq</p> */}
             </div>
           </div>
 
