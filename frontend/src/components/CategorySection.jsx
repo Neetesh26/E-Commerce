@@ -3,16 +3,16 @@ import { useNavigate } from "react-router-dom";
 
 import men from "../assets/men-cat.avif";
 import women from "../assets/p_img1.png";
-import Bags from "../assets/bag-cat.jpg";
-import electronics from "../assets/elec-cat.jpg";
+import Bags from "../assets/bag-cat.webp";
+import electronics from "../assets/elec-cat.webp";
 import homeKitchen from "../assets/home-kitchen-cat.webp";
 import toys from "../assets/toys-cat.avif";
 import kids from "../assets/kids-cat.avif";
-import Gaming from "../assets/gameing-cat.jpg";
-import mobiles from "../assets/mobile-cat.jpg";
-import Watches from "../assets/watches-cat.jpg";
-import cars from "../assets/cars-cat.jpg";
-import Shoes from "../assets/shoes-cat.jpg";
+import Gaming from "../assets/gameing-cat.webp";
+import mobiles from "../assets/mobile-cat.webp";
+import Watches from "../assets/watches-cat.webp";
+import cars from "../assets/cars-cat.webp";
+import Shoes from "../assets/shoes-cat.webp";
 
 const CategorySection = () => {
   const navigate = useNavigate();
